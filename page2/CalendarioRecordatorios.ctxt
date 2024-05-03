@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=CalendarioRecordatorios
+comment1.params=primaryStage
+comment1.target=void\ start(javafx.stage.Stage)
+comment2.params=date
+comment2.target=java.lang.String\ toString(java.time.LocalDate)
+comment3.params=string
+comment3.target=java.time.LocalDate\ fromString(java.lang.String)
+comment4.params=root
+comment4.target=void\ actualizarCalendario(javafx.scene.layout.BorderPane)
+comment5.params=dia
+comment5.target=java.lang.String\ formatoDiaSemana(int)
+comment6.params=recordatorios
+comment6.target=void\ setRecordatorios(java.util.HashMap)
+comment7.params=args
+comment7.target=void\ main(java.lang.String[])
+numComments=8
