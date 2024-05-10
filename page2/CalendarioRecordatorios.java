@@ -86,7 +86,7 @@ public class CalendarioRecordatorios extends Application {
         botonesNavegacion.setSpacing(10);
 
         ComboBox<String> colorComboBox = new ComboBox<>();
-        colorComboBox.getItems().addAll("Blanco", "Amarillo", "Verde", "Azul");
+        colorComboBox.getItems().addAll("Blanco", "Amarillo", "Verde", "Azul", "Rojo");
         colorComboBox.setValue("Blanco");
         colorComboBox.setOnAction(e -> {
             switch (colorComboBox.getValue()) {
@@ -102,6 +102,9 @@ public class CalendarioRecordatorios extends Application {
                 case"Azul":
                     colorFondo = Color.BLUE;
                     break;
+                case "Rojo":
+                    colorFondo = Color.RED;
+                    break;
             }
             root.setStyle("-fx-background-color: #" + Double.toHexString(colorFondo.getRed()).substring(2) + Double.toHexString(colorFondo.getGreen()).substring(2) + Double.toHexString(colorFondo.getBlue()).substring(2));
         });
@@ -109,16 +112,25 @@ public class CalendarioRecordatorios extends Application {
         ComboBox<String> idiomaComboBox = new ComboBox<>();
         idiomaComboBox.getItems().addAll("Español", "English");
         idiomaComboBox.setValue("Español");
-        idiomaComboBox.setOnAction(e -> {
-            switch (idiomaComboBox.getValue()) {
-                case "Español":
-                    idioma = "es";
+        colorComboBox.setOnAction(e -> {
+            switch (colorComboBox.getValue()) {
+                case "Blanco":
+                    colorFondo = Color.WHITE;
                     break;
-                case "English":
-                    idioma = "en";
+                case "Amarillo":
+                    colorFondo = Color.YELLOW;
+                    break;
+                case "Verde":
+                    colorFondo = Color.GREEN;
+                    break;
+                case "Azul":
+                    colorFondo = Color.BLUE;
+                    break;
+                case "Rojo":
+                    colorFondo = Color.RED;
                     break;
             }
-            actualizarCalendario(root);
+            root.setStyle("-fx-background-color: " + toHex(colorFondo));
         });
 
         vbox.getChildren().addAll(new Label("Selecciona una fecha:"), datePicker, new Label("Escribe un recordatorio:"), textArea, agregarButton, new Label("Selecciona un color:"), colorComboBox, new Label("Selecciona un idioma:"), idiomaComboBox, botonesNavegacion);
@@ -133,6 +145,13 @@ public class CalendarioRecordatorios extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Calendario de Recordatorios");
         primaryStage.show();
+    }
+    
+    private String toHex(Color color) {
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
     private void actualizarCalendario(BorderPane root) {
